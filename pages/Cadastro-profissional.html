@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/Cadastro-profissional.css">
+</head>
+<body>
+    <header>Cadastro de Profissionais</header>
+
+    <nav>
+        <a href="TelaInicial.html">Início</a>
+        <a href="Cadastro-paciente.html">Cadastro de Pacientes</a>
+        <a href="consultas.html">Consultas</a>
+        <a href="../index.html">Sair</a>
+    </nav>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Adicionar Profissional</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="especialidade">Especialidade</label>
+                    <input type="text" id="especialidade" name="especialidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="crm">CRM</label>
+                    <input type="text" id="crm" name="crm" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Adicionar</button>
+                </div>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>CRM</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Exemplo Nome</td>
+                    <td>Ortopedia</td>
+                    <td>123456</td>
+                    <td>(11) 98765-4321</td>
+                    <td>
+                        <button>Editar</button>
+                        <button>Excluir</button>
+                    </td>
+                </tr>
+                <!-- Mais registros serão adicionados aqui dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
