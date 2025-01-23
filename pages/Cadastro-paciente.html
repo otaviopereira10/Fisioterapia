@@ -12,13 +12,13 @@
         <a href="TelaInicial.html">Início</a>
         <a href="Cadastro-profissional.html">Cadastro de Profissionais</a>
         <a href="Consultas.html">Consultas</a>
-        <a href="/../index.html">Sair</a>
+        <a href="../index.html">Sair</a>
     </nav>
 
     <div class="container">
         <div class="form-container">
             <h2>Adicionar Paciente</h2>
-            <form>
+            <form id="add-form">
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" id="nome" name="nome" required>
@@ -39,8 +39,13 @@
                     <button type="submit">Adicionar</button>
                 </div>
             </form>
-        </div>
+        </div>  
 
+        <div class="filter-container">
+            <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
+            <button id="filter-button">Pesquisar</button>
+        </div>
+        
         <table>
             <thead>
                 <tr>
@@ -51,20 +56,12 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Exemplo Nome</td>
-                    <td>30</td>
-                    <td>(11) 12345-6789</td>
-                    <td>Rua Exemplo, 123</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Excluir</button>
-                    </td>
-                </tr>
-                <!-- Mais registros serão adicionados aqui dinamicamente -->
+            <tbody id="table-body">
+                <!-- Os dados serão adicionados dinamicamente -->
             </tbody>
         </table>
     </div>
+
+    <script src="../js/Pacientes.js"></script>
 </body>
 </html>

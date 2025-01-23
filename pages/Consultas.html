@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Consultas</title>
     <link rel="stylesheet" href="../css/Consultas.css">
 </head>
 <body>
@@ -13,24 +13,22 @@
         <a href="TelaInicial.html">Início</a>
         <a href="Cadastro-paciente.html">Cadastro de Pacientes</a>
         <a href="Cadastro-profissional.html">Cadastro de Profissionais</a>
-        <a href="/../index.html">Sair</a>
+        <a href="../index.html">Sair</a>
     </nav>
 
     <div class="container">
         <div class="form-container">
             <h2>Adicionar Consulta</h2>
-            <form>
+            <form id="add-form">
                 <div class="form-group">
                     <label for="paciente">Paciente</label>
                     <select id="paciente" name="paciente" required>
-                        <option value="">Selecione um paciente</option>
                         <!-- Opções dinâmicas serão adicionadas aqui -->
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="profissional">Profissional</label>
                     <select id="profissional" name="profissional" required>
-                        <option value="">Selecione um profissional</option>
                         <!-- Opções dinâmicas serão adicionadas aqui -->
                     </select>
                 </div>
@@ -48,6 +46,11 @@
             </form>
         </div>
 
+        <div class="filter-container">
+            <input type="text" id="filter-input" placeholder="Pesquisar por paciente...">
+            <button id="filter-button">Pesquisar</button>
+        </div>
+
         <table>
             <thead>
                 <tr>
@@ -58,20 +61,12 @@
                     <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Exemplo Paciente</td>
-                    <td>Exemplo Profissional</td>
-                    <td>2025-01-01</td>
-                    <td>14:00</td>
-                    <td>
-                        <button>Editar</button>
-                        <button>Excluir</button>
-                    </td>
-                </tr>
-                <!-- Mais registros serão adicionados aqui dinamicamente -->
+            <tbody id="table-body">
+                <!-- Dados dinâmicos serão adicionados aqui -->
             </tbody>
         </table>
     </div>
+
+    <script src="../js/Consultas.js"></script>
 </body>
 </html>
