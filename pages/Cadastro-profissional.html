@@ -3,66 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Profissionais</title>
+    <title>Adicionar Profissional</title>
     <link rel="stylesheet" href="../css/Cadastro-profissional.css">
 </head>
 <body>
-    <header>Cadastro de Profissionais</header>
+    <header>Adicionar Profissional</header>
 
     <nav>
         <a href="TelaInicial.html">Início</a>
-        <a href="Cadastro-paciente.html">Cadastro de Pacientes</a>
-        <a href="Consultas.html">Consultas</a>
-        <a href="../index.html">Sair</a>
+        <a href="Sub-pages/Consultar-profissional.html">Voltar</a>
     </nav>
 
     <div class="container">
-        <div class="form-container">
-            <h2>Adicionar Profissional</h2>
-            <form id="add-form">
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="especialidade">Especialidade</label>
-                    <input type="text" id="especialidade" name="especialidade" required>
-                </div>
-                <div class="form-group">
-                    <label for="crm">Registro Profissional</label>
-                    <input type="text" id="crm" name="crm" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Adicionar</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="filter-container">
-            <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
-            <button id="filter-button">Pesquisar</button>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Especialidade</th>
-                    <th>CRM</th>
-                    <th>Telefone</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <!-- Os dados serão adicionados dinamicamente -->
-            </tbody>
-        </table>
+        <form id="add-form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="especialidade">Especialidade</label>
+                <input type="text" id="especialidade" name="especialidade" required>
+            </div>
+            <div class="form-group">
+                <label for="crm">Registro Profissional</label>
+                <input type="text" id="crm" name="crm" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Adicionar</button>
+            </div>
+        </form>
     </div>
 
-    <script src="../js/Filter-profissional.js"></script>
+    <script src="../js/Cadastro-profissional.js">     </script>
 </body>
 </html>

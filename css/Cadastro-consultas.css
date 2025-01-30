@@ -1,13 +1,16 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Global Styles */
 body {
     font-family: Arial, sans-serif;
     background: #f9f4ef;
     color: #333;
+    margin: 0;
 }
 
 header {
@@ -44,35 +47,19 @@ nav a:hover {
     color: white;
 }
 
+/* Form Styles */
 .container {
-    max-width: 1200px;
+    max-width: 600px;
     margin: 40px auto;
-    padding: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-table th, table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-table th {
-    background: #d8c3a5;
-    color: white;
-}
-
-.form-container {
-    margin-bottom: 20px;
     padding: 20px;
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
@@ -85,14 +72,15 @@ table th {
     margin-bottom: 5px;
 }
 
-.form-group input, .form-group select {
+.form-group input,
+.form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.form-group button {
+button {
     background: #d8c3a5;
     color: white;
     padding: 10px 20px;
@@ -102,34 +90,21 @@ table th {
     transition: background 0.3s;
 }
 
-.form-group button:hover {
+button:hover {
     background: #c0a77b;
 }
 
-.filter-container {
-    margin-bottom: 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.filter-container input {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.filter-container button {
+/* Botão de Sair */
+.exit-button {
     background: #d8c3a5;
     color: white;
+    text-decoration: none;
     padding: 10px 20px;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
 
-.filter-container button:hover {
+.exit-button:hover {
     background: #c0a77b;
 }

@@ -1,67 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Pacientes</title>
+    <title>Adicionar Paciente</title>
     <link rel="stylesheet" href="../css/Cadastro-paciente.css">
 </head>
 <body>
-    <header>Cadastro de Pacientes</header>
+    <header>Adicionar Paciente</header>
+
     <nav>
         <a href="TelaInicial.html">Início</a>
-        <a href="Cadastro-profissional.html">Cadastro de Profissionais</a>
-        <a href="Consultas.html">Consultas</a>
-        <a href="../index.html">Sair</a>
+        <a href="Sub-pages/Consultar-paciente.html">Voltar</a>
     </nav>
 
     <div class="container">
-        <div class="form-container">
-            <h2>Adicionar Paciente</h2>
-            <form id="add-form">
-                <div class="form-group">
-                    <label for="nome">Nome</label>
-                    <input type="text" id="nome" name="nome" required>
-                </div>
-                <div class="form-group">
-                    <label for="idade">Idade</label>
-                    <input type="number" id="idade" name="idade" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" required>
-                </div>
-                <div class="form-group">
-                    <label for="endereco">Endereço</label>
-                    <input type="text" id="endereco" name="endereco" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit">Adicionar</button>
-                </div>
-            </form>
-        </div>  
-
-        <div class="filter-container">
-            <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
-            <button id="filter-button">Pesquisar</button>
-        </div>
-        
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Telefone</th>
-                    <th>Endereço</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="table-body">
-                <!-- Os dados serão adicionados dinamicamente -->
-            </tbody>
-        </table>
+        <form id="add-form">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="form-group">
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" name="idade" required>
+            </div>
+            <div class="form-group">
+                <label for="telefone">Telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+            <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" name="endereco" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Adicionar</button>
+            </div>
+        </form>
     </div>
 
-    <script src="../js/Filter-pacientes.js"></script>
+    <script src="../js/Cadastro-paciente.js"></script>
 </body>
 </html>

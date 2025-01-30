@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Pacientes</title>
+    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-paciente.css">
+</head>
+<body>
+    <header>Consulta de Pacientes</header>
+
+    <nav>
+        <a href="../TelaInicial.html">Início</a>
+        <a href="../Sub-pages/Consultar-profissional.html">Cadastro de Profissionais</a>
+        <a href="../Sub-pages/Consultar-consultas.html">Consultas</a>
+        <a href="../../index.html">Sair</a>
+    </nav>
+
+    <div class="container">
+        <div class="actions">
+            <a href="../Cadastro-paciente.html" class="add-button">Adicionar Paciente</a>
+        </div>
+
+        <div class="filter-container">
+            <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
+            <button id="filter-button">Pesquisar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Telefone</th>
+                    <th>Endereço</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Dados dinâmicos -->
+            </tbody>
+        </table>
+
+        <div class="exit-container">
+            <a href="../TelaInicial.html" class="exit-button">Sair</a>
+        </div>
+    </div>
+
+    <script src="../../js/Sub-pages/Consultar-pacientes.js"></script>
+</body>
+</html>

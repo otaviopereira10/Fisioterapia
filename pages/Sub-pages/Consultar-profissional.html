@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Profissionais</title>
+    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-profissional.css">
+</head>
+<body>
+    <header>Consulta de Profissionais</header>
+
+    <nav>
+        <a href="../TelaInicial.html">Início</a>
+        <a href="../Sub-pages/Consultar-paciente.html">Cadastro de Pacientes</a>
+        <a href="../Sub-pages/Consultar-consultas.html">Consultas</a>
+        <a href="../../index.html">Sair</a>
+    </nav>
+
+    <div class="container">
+        <!-- Botão de Adicionar no canto superior direito -->
+        <div class="actions">
+            <a href="../Cadastro-profissional.html" class="add-button">Adicionar Profissional</a>
+        </div>
+
+        <!-- Sistema de Filtro -->
+        <div class="filter-container">
+            <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
+            <button id="filter-button">Pesquisar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>Registro Profissional</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <!-- Os dados serão adicionados dinamicamente -->
+            </tbody>
+        </table>
+
+        <!-- Botão de Sair no canto inferior direito -->
+        <div class="exit-container">
+            <a href="../TelaInicial.html" class="exit-button">Sair</a>
+        </div>
+    </div>
+
+    <script src="../../js/Sub-pages/Consultar-profissionais.js"></script>
+</body>
+</html>
