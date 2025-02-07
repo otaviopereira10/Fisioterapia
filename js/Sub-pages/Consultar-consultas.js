@@ -1,81 +1,113 @@
-// Carrega os dados do localStorage
-function carregarConsultas() {
-    return JSON.parse(localStorage.getItem("consultas")) || [];
-}
-
-// Salva os dados no localStorage
-function salvarConsultas(consultas) {
-    localStorage.setItem("consultas", JSON.stringify(consultas));
-}
-
-// Formata a data no formato brasileiro (DD/MM/YYYY)
-function formatarData(dataISO) {
-    const [ano, mes, dia] = dataISO.split("-");
-    return `${dia}/${mes}/${ano}`;
-}
-
-// Renderiza a tabela com as consultas
-function renderTable(consultas = carregarConsultas()) {
+document.addEventListener("DOMContentLoaded", async function () {
     const tableBody = document.getElementById("table-body");
-    tableBody.innerHTML = ""; // Limpa a tabela antes de renderizar
 
-    consultas.forEach((consulta, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${consulta.paciente}</td>
-            <td>${consulta.profissional}</td>
-            <td>${formatarData(consulta.data)}</td>
-            <td>${consulta.hora}</td>
-            <td>
-                <button class="edit-button" onclick="editarConsulta(${index})">Editar</button>
-                <button class="delete-button" onclick="excluirConsulta(${index})">Excluir</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
+    await carregarConsultas();
 
-// Função para editar uma consulta
-function editarConsulta(index) {
-    const consultas = carregarConsultas();
-    const consulta = consultas[index];
+    async function carregarConsultas() {
+        try {
+            const response = await fetch("https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas");
+            if (!response.ok) throw new Error("Erro ao buscar consultas");
 
-    const paciente = prompt("Atualize o paciente:", consulta.paciente);
-    const profissional = prompt("Atualize o profissional:", consulta.profissional);
-    const data = prompt("Atualize a data (DD/MM/YYYY):", formatarData(consulta.data));
-    const hora = prompt("Atualize a hora:", consulta.hora);
-
-    if (paciente && profissional && data && hora) {
-        // Convertendo a data para formato ISO antes de salvar
-        const [dia, mes, ano] = data.split("/");
-        consultas[index] = { paciente, profissional, data: `${ano}-${mes}-${dia}`, hora };
-        salvarConsultas(consultas);
-        renderTable();
+            const consultas = await response.json();
+            atualizarTabela(consultas);
+        } catch (error) {
+            console.error("Erro ao carregar consultas:", error);
+        }
     }
-}
 
-// Função para excluir uma consulta
-function excluirConsulta(index) {
-    if (confirm("Tem certeza de que deseja excluir esta consulta?")) {
-        const consultas = carregarConsultas();
-        consultas.splice(index, 1);
-        salvarConsultas(consultas);
-        renderTable();
+    function atualizarTabela(consultas) {
+        tableBody.innerHTML = "";
+        consultas.forEach((consulta) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${consulta.paciente ? consulta.paciente.nome : "Desconhecido"}</td>
+                <td>${consulta.profissional ? consulta.profissional.nome : "Desconhecido"}</td>
+                <td>${consulta.data}</td>
+                <td>${consulta.hora}</td>
+                <td>
+                    <button class="edit-button" 
+                        data-id="${consulta.id}" 
+                        data-paciente="${consulta.paciente ? consulta.paciente.id : ''}" 
+                        data-profissional="${consulta.profissional ? consulta.profissional.id : ''}" 
+                        data-data="${consulta.data}" 
+                        data-hora="${consulta.hora}">
+                        Editar
+                    </button>
+                    <button class="delete-button" data-id="${consulta.id}">Excluir</button>
+                </td>
+            `;
+
+            tableBody.appendChild(row);
+        });
+
+        document.querySelectorAll(".edit-button").forEach((button) => {
+            button.addEventListener("click", function () {
+                editarConsulta(this);
+            });
+        });
+
+        document.querySelectorAll(".delete-button").forEach((button) => {
+            button.addEventListener("click", function () {
+                deletarConsulta(this.getAttribute("data-id"));
+            });
+        });
     }
-}
 
-// Função para filtrar as consultas pelo nome do paciente
-function filtrarConsultas() {
-    const filterValue = document.getElementById("filter-input").value.toLowerCase();
-    const consultas = carregarConsultas();
-    const filteredData = consultas.filter(consulta =>
-        consulta.paciente.toLowerCase().includes(filterValue)
-    );
-    renderTable(filteredData);
-}
+    async function editarConsulta(button) {
+        const consultaId = button.getAttribute("data-id");
+        const pacienteIdAtual = button.getAttribute("data-paciente");
+        const profissionalIdAtual = button.getAttribute("data-profissional");
+        const dataAtual = button.getAttribute("data-data");
+        const horaAtual = button.getAttribute("data-hora");
 
-// Adiciona evento ao botão de pesquisa
-document.getElementById("filter-button").addEventListener("click", filtrarConsultas);
+        const novoPacienteId = prompt("Novo ID do Paciente:", pacienteIdAtual);
+        const novoProfissionalId = prompt("Novo ID do Profissional:", profissionalIdAtual);
+        const novaData = prompt("Nova Data (AAAA-MM-DD):", dataAtual);
+        const novaHora = prompt("Nova Hora (HH:MM):", horaAtual);
 
-// Renderiza a tabela ao carregar a página
-renderTable();
+        if (!novoPacienteId || !novoProfissionalId || !novaData || !novaHora) {
+            alert("Todos os campos devem ser preenchidos!");
+            return;
+        }
+
+        const consultaAtualizada = {
+            data: novaData,
+            hora: novaHora
+        };
+
+        try {
+            const url = `https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${consultaId}/${novoPacienteId}/${novoProfissionalId}`;
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(consultaAtualizada),
+            });
+
+            if (!response.ok) throw new Error("Erro ao atualizar consulta");
+
+            alert("Consulta atualizada com sucesso!");
+            carregarConsultas();
+        } catch (error) {
+            console.error("Erro ao atualizar consulta:", error);
+            alert("Erro ao atualizar consulta.");
+        }
+    }
+
+    async function deletarConsulta(id) {
+        if (confirm("Tem certeza que deseja excluir esta consulta?")) {
+            try {
+                const response = await fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${id}`, {
+                    method: "DELETE"
+                });
+
+                if (!response.ok) throw new Error("Erro ao excluir consulta");
+
+                alert("Consulta excluída com sucesso!");
+                carregarConsultas();
+            } catch (error) {
+                console.error("Erro ao excluir consulta:", error);
+            }
+        }
+    }
+});

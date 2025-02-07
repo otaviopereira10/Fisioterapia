@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,23 +17,28 @@
     <div class="container">
         <form id="add-form">
             <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" id="nome" name="nome" required>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite o nome do paciente" required>
             </div>
+
             <div class="form-group">
-                <label for="idade">Idade</label>
-                <input type="number" id="idade" name="idade" required>
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" placeholder="Digite a idade" required>
             </div>
+
             <div class="form-group">
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" required>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="Digite o telefone" required>
             </div>
+
             <div class="form-group">
-                <label for="endereco">Endereço</label>
-                <input type="text" id="endereco" name="endereco" required>
+                <label for="endereco">Endereço:</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Digite o endereço" required>
             </div>
-            <div class="form-group">
-                <button type="submit">Adicionar</button>
+
+            <div class="button-group">
+                <button type="submit" class="submit-button">Adicionar</button>
+                <a href="Sub-pages/Consultar-paciente.html" class="exit-button">Voltar</a>
             </div>
         </form>
     </div>

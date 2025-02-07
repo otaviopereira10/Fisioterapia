@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,15 +17,18 @@
     </nav>
 
     <div class="container">
+        <!-- Botão de Adicionar Paciente -->
         <div class="actions">
             <a href="../Cadastro-paciente.html" class="add-button">Adicionar Paciente</a>
         </div>
 
+        <!-- Campo de Busca -->
         <div class="filter-container">
             <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
             <button id="filter-button">Pesquisar</button>
         </div>
 
+        <!-- Tabela de Pacientes -->
         <table>
             <thead>
                 <tr>
@@ -37,10 +40,11 @@
                 </tr>
             </thead>
             <tbody id="table-body">
-                <!-- Dados dinâmicos -->
+                <!-- Dados dos pacientes serão inseridos dinamicamente via JavaScript -->
             </tbody>
         </table>
 
+        <!-- Botão de Sair -->
         <div class="exit-container">
             <a href="../TelaInicial.html" class="exit-button">Sair</a>
         </div>

@@ -1,79 +1,75 @@
-// Carrega os dados do localStorage (Pacientes, Profissionais e Consultas)
-function carregarPacientes() {
-    return JSON.parse(localStorage.getItem("pacientes")) || [];
-}
+document.addEventListener("DOMContentLoaded", async function () {
+    const form = document.getElementById("add-form");
+    const pacienteSelect = document.getElementById("paciente");
+    const profissionalSelect = document.getElementById("profissional");
 
-function carregarProfissionais() {
-    return JSON.parse(localStorage.getItem("profissionais")) || [];
-}
+    await carregarPacientes();
+    await carregarProfissionais();
 
-function carregarConsultas() {
-    return JSON.parse(localStorage.getItem("consultas")) || [];
-}
+    async function carregarPacientes() {
+        try {
+            const response = await fetch("https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/pacientes");
+            if (!response.ok) throw new Error("Erro ao buscar pacientes");
 
-// Salva os dados no localStorage
-function salvarConsultas(consultas) {
-    localStorage.setItem("consultas", JSON.stringify(consultas));
-}
-
-// Preenche os selects com os pacientes e profissionais cadastrados
-function preencherSelects() {
-    const pacientes = carregarPacientes();
-    const profissionais = carregarProfissionais();
-
-    const selectPaciente = document.getElementById("paciente");
-    const selectProfissional = document.getElementById("profissional");
-
-    // Limpa os selects antes de adicionar novas opções
-    selectPaciente.innerHTML = '<option value="">Selecione um paciente</option>';
-    selectProfissional.innerHTML = '<option value="">Selecione um profissional</option>';
-
-    // Adiciona os pacientes ao select
-    pacientes.forEach(paciente => {
-        const option = document.createElement("option");
-        option.value = paciente.nome;
-        option.textContent = paciente.nome;
-        selectPaciente.appendChild(option);
-    });
-
-    // Adiciona os profissionais ao select
-    profissionais.forEach(profissional => {
-        const option = document.createElement("option");
-        option.value = profissional.nome;
-        option.textContent = profissional.nome;
-        selectProfissional.appendChild(option);
-    });
-}
-
-// Função para adicionar uma nova consulta
-document.getElementById("add-form")?.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // Captura os valores do formulário
-    const paciente = document.getElementById("paciente").value;
-    const profissional = document.getElementById("profissional").value;
-    const data = document.getElementById("data").value;
-    const hora = document.getElementById("hora").value;
-
-    // Verifica se os campos foram preenchidos corretamente
-    if (!paciente || !profissional || !data || !hora) {
-        alert("Por favor, preencha todos os campos.");
-        return;
+            const pacientes = await response.json();
+            pacientes.forEach(paciente => {
+                const option = document.createElement("option");
+                option.value = paciente.id;
+                option.textContent = paciente.nome;
+                pacienteSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Erro ao carregar pacientes:", error);
+        }
     }
 
-    // Carrega os dados existentes no localStorage
-    const consultas = carregarConsultas();
+    async function carregarProfissionais() {
+        try {
+            const response = await fetch("https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/profissionais");
+            if (!response.ok) throw new Error("Erro ao buscar profissionais");
 
-    // Adiciona a nova consulta à lista
-    consultas.push({ paciente, profissional, data, hora });
+            const profissionais = await response.json();
+            profissionais.forEach(profissional => {
+                const option = document.createElement("option");
+                option.value = profissional.id;
+                option.textContent = profissional.nome;
+                profissionalSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Erro ao carregar profissionais:", error);
+        }
+    }
 
-    // Salva os dados atualizados no localStorage
-    salvarConsultas(consultas);
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
-    // Exibe uma mensagem de sucesso e redireciona para a página de consulta
-    alert("Consulta adicionada com sucesso!");
-    window.location.href = "../pages/Sub-pages/Consultar-consultas.html"; // Redireciona para Consultar Consultas
+        const pacienteId = pacienteSelect.value;
+        const profissionalId = profissionalSelect.value;
+        const data = document.getElementById("data").value;
+        const hora = document.getElementById("hora").value;
+
+        if (!pacienteId || !profissionalId) {
+            alert("Selecione um paciente e um profissional!");
+            return;
+        }
+
+        const novaConsulta = { data, hora };
+
+        try {
+            const url = `https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${pacienteId}/${profissionalId}`;
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(novaConsulta),
+            });
+
+            if (!response.ok) throw new Error("Erro ao cadastrar consulta");
+
+            alert("Consulta cadastrada com sucesso!");
+            window.location.href = "Sub-pages/Consultar-consultas.html";
+        } catch (error) {
+            console.error("Erro ao cadastrar consulta:", error);
+            alert("Erro ao cadastrar consulta.");
+        }
+    });
 });
-
-// Chama a função para preencher os selects ao carregar a página
-document.addEventListener("DOMContentLoaded", preencherSelects);

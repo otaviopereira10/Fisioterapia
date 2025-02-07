@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar - Sistema de Fisioterapia</title>
-    <link rel="stylesheet" href="../css/Cadastro.css">
+    <title>Adicionar Usuário</title>
+    <link rel="stylesheet" href="../css/Cadastro-usuario.css">
 </head>
 <body>
-    <div class="register-container">
-        <h1>Registrar</h1>
-        <form method="POST">
+    <header>Adicionar Usuário</header>
+
+    <nav>
+        <a href="TelaInicial.html">Início</a>
+        <a href="Sub-pages/Consultar-usuarios.html">Voltar</a>
+    </nav>
+
+    <div class="container">
+        <form id="cadastro-usuario-form">
             <div class="form-group">
-                <label for="role">Eu sou:</label>
-                <select id="role" name="role" required onchange="toggleCRMField()">
+                <label for="role">Tipo de Usuário:</label>
+                <select id="role" name="role" required onchange="toggleRegistroField()">
                     <option value="">Selecione</option>
                     <option value="cliente">Cliente</option>
                     <option value="especialista">Especialista</option>
+                    <option value="admin">Administrador</option>
                 </select>
             </div>
-            <div class="form-group hidden" id="crm-field">
-                <label for="crm">CRM</label>
-                <input type="text" id="crm" name="crm" placeholder="Informe seu CRM">
+            <div class="form-group hidden" id="registro-field">
+                <label for="registro">Registro Profissional</label>
+                <input type="text" id="registro" name="registro" placeholder="Informe o registro">
             </div>
             <div class="form-group">
                 <label for="name">Nome Completo</label>
@@ -42,11 +49,11 @@
                 <label for="confirm-password">Confirmar Senha</label>
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
-            <a href="../index.html"> <button type="submit" class="register-button" >Registrar </a> </button>
+            <button type="submit" class="register-button">Cadastrar</button>
         </form>
-        <a href="../index.html" class="login-link">Já tem uma conta? Faça login</a>
+        <a href="Sub-pages/Consultar-usuarios.html" class="back-button">Voltar</a>
     </div>
 
-<script src="../js/Cadastro.js"></script>
+    <script src="../js/Cadastro.js"></script>
 </body>
 </html>

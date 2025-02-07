@@ -72,37 +72,76 @@ form {
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input, .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-button {
-    background: #d8c3a5;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
+/* Campo de Registro Profissional Oculto */
+.hidden {
+    display: none;
 }
 
-button:hover {
-    background: #c0a77b;
+/* Botões de Ação */
+.action-buttons {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 25px;
 }
 
-.exit-button {
+/* 🔹 Botão Voltar estilizado 🔹 */
+.back-button {
+    margin-top: 20px;
     background: #d8c3a5;
     color: white;
+    justify-content: center;
     text-decoration: none;
-    padding: 9px 15px;
-    border-radius: 5px;
+    padding: 12px 24px;
+    border-radius: 8px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.exit-button:hover {
+.back-button:hover {
     background: #c0a77b;
+    transform: scale(1.05);
+}
+
+/* 🔹 Botão Cadastrar estilizado 🔹 */
+.register-button {
+    background: #d8c3a5;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.register-button:hover {
+    background: #4cae4c;
+    transform: scale(1.05);
+}
+
+/* 🔹 Responsividade 🔹 */
+@media (max-width: 600px) {
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .back-button, .register-button {
+        width: 100%;
+        text-align: center;
+    }
 }

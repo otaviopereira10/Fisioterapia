@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Profissionais</title>
-    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-profissional.css">
+    <title>Consulta de Usuários</title>
+    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-usuarios.css">
 </head>
 <body>
-    <header>Consulta de Profissionais</header>
+    <header>Consulta de Usuários</header>
 
     <nav>
         <a href="../TelaInicial.html">Início</a>
         <a href="../Sub-pages/Consultar-paciente.html">Cadastro de Pacientes</a>
+        <a href="../Sub-pages/Consultar-profissional.html">Cadastro de Profissionais</a>
         <a href="../Sub-pages/Consultar-consultas.html">Consultas</a>
         <a href="../../index.html">Sair</a>
     </nav>
 
     <div class="container">
+        <!-- Botão de Adicionar Usuário -->
         <div class="actions">
-            <a href="../Cadastro-profissional.html" class="add-button">Adicionar Profissional</a>
+            <a href="../Cadastro-usuario.html" class="add-button">Adicionar Usuário</a>
         </div>
 
+        <!-- Sistema de Filtro -->
         <div class="filter-container">
             <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
             <button id="filter-button">Pesquisar</button>
@@ -30,22 +33,24 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Especialidade</th>
+                    <th>Usuário</th>
+                    <th>E-mail</th>
+                    <th>Tipo</th>
                     <th>Registro Profissional</th>
-                    <th>Telefone</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-                <!-- Os dados serão adicionados dinamicamente -->
+                <!-- Os dados dos usuários serão inseridos aqui dinamicamente -->
             </tbody>
         </table>
 
+        <!-- Botão de Sair -->
         <div class="exit-container">
             <a href="../TelaInicial.html" class="exit-button">Sair</a>
         </div>
     </div>
 
-    <script src="../../js/Sub-pages/Consultar-profissionais.js"></script>
+    <script src="../../js/Sub-pages/Consultar-usuarios.js"></script>
 </body>
 </html>

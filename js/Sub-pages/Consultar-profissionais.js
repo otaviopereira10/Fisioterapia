@@ -1,73 +1,105 @@
-// Carrega os dados do localStorage
-function carregarProfissionais() {
-    return JSON.parse(localStorage.getItem("profissionais")) || [];
-}
-
-// Salva os dados no localStorage
-function salvarProfissionais(profissionais) {
-    localStorage.setItem("profissionais", JSON.stringify(profissionais));
-}
-
-// Renderiza a tabela com os profissionais
-function renderTable(profissionais = carregarProfissionais()) {
+document.addEventListener("DOMContentLoaded", function () {
     const tableBody = document.getElementById("table-body");
-    tableBody.innerHTML = "";
+    const filterInput = document.getElementById("filter-input");
+    const filterButton = document.getElementById("filter-button");
 
-    profissionais.forEach((profissional, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${profissional.nome}</td>
-            <td>${profissional.especialidade}</td>
-            <td>${profissional.crm}</td>
-            <td>${profissional.telefone}</td>
-            <td>
-                <button class="edit-button" onclick="editarProfissional(${index})">Editar</button>
-                <button class="delete-button" onclick="excluirProfissional(${index})">Excluir</button>
-            </td>
-        `;
-        tableBody.appendChild(row);
-    });
-}
+    // 🔍 Carregar profissionais ao iniciar a página
+    carregarProfissionais();
 
-// Função para editar um profissional
-function editarProfissional(index) {
-    const profissionais = carregarProfissionais();
-    const profissional = profissionais[index];
-
-    const nome = prompt("Atualize o nome:", profissional.nome);
-    const especialidade = prompt("Atualize a especialidade:", profissional.especialidade);
-    const crm = prompt("Atualize o registro profissional:", profissional.crm);
-    const telefone = prompt("Atualize o telefone:", profissional.telefone);
-
-    if (nome && especialidade && crm && telefone) {
-        profissionais[index] = { nome, especialidade, crm, telefone };
-        salvarProfissionais(profissionais);
-        renderTable();
+    // 🔄 Função para buscar e exibir os profissionais cadastrados
+    async function carregarProfissionais() {
+        try {
+            const response = await fetch("https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/profissionais");
+            if (!response.ok) {
+                throw new Error("Erro ao buscar profissionais");
+            }
+            const profissionais = await response.json();
+            atualizarTabela(profissionais);
+        } catch (error) {
+            console.error("Erro ao carregar profissionais:", error);
+            alert("Erro ao carregar profissionais. Tente novamente.");
+        }
     }
-}
 
-// Função para excluir um profissional
-function excluirProfissional(index) {
-    if (confirm("Tem certeza de que deseja excluir este profissional?")) {
-        const profissionais = carregarProfissionais();
-        profissionais.splice(index, 1);
-        salvarProfissionais(profissionais);
-        renderTable();
+    // 🏷️ Atualizar a tabela com os profissionais
+    function atualizarTabela(profissionais) {
+        tableBody.innerHTML = "";
+        profissionais.forEach((profissional) => {
+            const row = document.createElement("tr");
+            row.setAttribute("data-id", profissional.id);
+
+            row.innerHTML = `
+                <td>${profissional.nome}</td>
+                <td>${profissional.especialidade}</td>
+                <td>${profissional.registro}</td> <!-- Alterado de CRM para Registro -->
+                <td>${profissional.telefone}</td>
+                <td>
+                    <button class="edit-button" data-id="${profissional.id}">Editar</button>
+                    <button class="delete-button" data-id="${profissional.id}">Excluir</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        document.querySelectorAll(".edit-button").forEach((button) => {
+            button.addEventListener("click", function () {
+                editarProfissional(this.getAttribute("data-id"));
+            });
+        });
+
+        document.querySelectorAll(".delete-button").forEach((button) => {
+            button.addEventListener("click", function () {
+                deletarProfissional(this.getAttribute("data-id"));
+            });
+        });
     }
-}
 
-// Função para filtrar os profissionais pelo nome
-function filtrarProfissionais() {
-    const filterValue = document.getElementById("filter-input").value.toLowerCase();
-    const profissionais = carregarProfissionais();
-    const filteredData = profissionais.filter(profissional =>
-        profissional.nome.toLowerCase().includes(filterValue)
-    );
-    renderTable(filteredData);
-}
+    // 📝 Função para editar um profissional
+    function editarProfissional(id) {
+        const linha = document.querySelector(`tr[data-id='${id}']`);
+        const nomeAtual = linha.cells[0].textContent;
+        const especialidadeAtual = linha.cells[1].textContent;
+        const registroAtual = linha.cells[2].textContent; // Alterado de CRM para Registro
+        const telefoneAtual = linha.cells[3].textContent;
 
-// Adiciona evento ao botão de pesquisa
-document.getElementById("filter-button").addEventListener("click", filtrarProfissionais);
+        const novoNome = prompt("Novo nome:", nomeAtual);
+        const novaEspecialidade = prompt("Nova especialidade:", especialidadeAtual);
+        const novoRegistro = prompt("Novo Registro Profissional:", registroAtual);
+        const novoTelefone = prompt("Novo telefone:", telefoneAtual);
 
-// Renderiza a tabela ao carregar a página
-renderTable();
+        if (novoNome && novaEspecialidade && novoRegistro && novoTelefone) {
+            const profissionalAtualizado = { nome: novoNome, especialidade: novaEspecialidade, registro: novoRegistro, telefone: novoTelefone };
+
+            fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/profissionais/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(profissionalAtualizado)
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error("Erro ao atualizar profissional");
+                    alert("Profissional atualizado com sucesso!");
+                    carregarProfissionais();
+                })
+                .catch(error => {
+                    console.error("Erro ao atualizar profissional:", error);
+                    alert("Erro ao atualizar profissional.");
+                });
+        }
+    }
+
+    // ❌ Função para excluir um profissional
+    function deletarProfissional(id) {
+        if (confirm("Tem certeza que deseja excluir este profissional?")) {
+            fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/profissionais/${id}`, { method: "DELETE" })
+                .then(response => {
+                    if (!response.ok) throw new Error("Erro ao excluir profissional");
+                    alert("Profissional excluído com sucesso!");
+                    carregarProfissionais();
+                })
+                .catch(error => {
+                    console.error("Erro ao excluir profissional:", error);
+                    alert("Erro ao excluir profissional.");
+                });
+        }
+    }
+});
