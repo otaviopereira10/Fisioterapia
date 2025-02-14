@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${usuario.role}</td>
                 <td>${usuario.registro ? usuario.registro : "N/A"}</td>
                 <td>
-                    <button onclick="editarUsuario(${usuario.id})">Editar</button>
-                    <button onclick="excluirUsuario(${usuario.id})">Excluir</button>
+                    <button class="edit-button" onclick="editarUsuario(${usuario.id})">Editar</button>
+                    <button class="delete-button" onclick="excluirUsuario(${usuario.id})">Excluir</button>
                 </td>
             `;
             tableBody.appendChild(row);

@@ -11,28 +11,28 @@
 
     <nav>
         <a href="../TelaInicial.html">Início</a>
-        <a href="../Sub-pages/Consultar-paciente.html">Cadastro de Pacientes</a>
-        <a href="../Sub-pages/Consultar-profissional.html">Cadastro de Profissionais</a>
+        <a href="../Sub-pages/Consultar-paciente.html">Pacientes</a>
+        <a href="../Sub-pages/Consultar-profissional.html">Profissionais</a>
+        <a href="../Sub-pages/Consultar-clinicas.html">Clínicas</a>
         <a href="../../index.html">Sair</a>
     </nav>
 
     <div class="container">
-        <!-- Botão de Adicionar -->
         <div class="actions">
             <a href="../Cadastro-consultas.html" class="add-button">Adicionar Consulta</a>
         </div>
-    
-        <!-- Sistema de Filtro -->
+
         <div class="filter-container">
-            <input type="text" id="filter-input" placeholder="Pesquisar por paciente...">
+            <input type="text" id="filter-input" placeholder="Pesquisar por paciente ou clínica...">
             <button id="filter-button">Pesquisar</button>
         </div>
-    
+
         <table>
             <thead>
                 <tr>
                     <th>Paciente</th>
                     <th>Profissional</th>
+                    <th>Clínica</th>
                     <th>Data</th>
                     <th>Hora</th>
                     <th>Ações</th>
@@ -42,8 +42,7 @@
                 <!-- Dados dinâmicos serão inseridos aqui -->
             </tbody>
         </table>
-    
-        <!-- Botão de Sair -->
+
         <div class="exit-container">
             <a href="../TelaInicial.html" class="exit-button">Sair</a>
         </div>

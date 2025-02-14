@@ -1,34 +1,41 @@
-/* Reset */
+/* 🎨 Reset de estilos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-/* Global Styles */
+/* 🌍 Estilização global */
 body {
-    font-family: Arial, sans-serif;
-    background: #f9f4ef;
+    background: #f3ebe3;
     color: #333;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* 🏆 Cabeçalho */
 header {
-    background: #d8c3a5;
+    background: #c7b299;
     padding: 20px;
     text-align: center;
     color: white;
     font-size: 24px;
     font-weight: bold;
+    width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* 🔝 Navbar */
 nav {
     background: #ffffff;
     padding: 15px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,13 +50,14 @@ nav a {
 }
 
 nav a:hover {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
 }
 
-/* Container */
+/* 📦 Container principal */
 .container {
     max-width: 1200px;
+    width: 90%;
     margin: 40px auto;
     padding: 20px;
     background: #ffffff;
@@ -57,7 +65,7 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Botão de Adicionar */
+/* 🎯 Botão de Adicionar */
 .actions {
     display: flex;
     justify-content: flex-end;
@@ -65,20 +73,21 @@ nav a:hover {
 }
 
 .add-button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .add-button:hover {
-    background: #c0a77b;
+    background: #a2896d;
+    transform: scale(1.05);
 }
 
-/* Sistema de Filtro */
+/* 🔎 Filtro de pesquisa */
 .filter-container {
     display: flex;
     justify-content: flex-start;
@@ -89,39 +98,46 @@ nav a:hover {
 .filter-container input {
     width: 300px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #c7b299;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .filter-container button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .filter-container button:hover {
-    background: #c0a77b;
+    background: #a2896d;
+    transform: scale(1.05);
 }
 
-/* Tabela */
+/* 📋 Tabela */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 table th, table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 14px 16px;
+    border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
 table th {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -133,28 +149,47 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #f1e9d8;
+    transition: background 0.3s ease;
 }
 
-/* Botões */
+/* 🎛️ Botões de ação */
 button {
-    padding: 8px 16px;
+    padding: 10px 16px;
     margin: 5px;
     font-size: 14px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background: #c0a77b;
+    background: #a2896d;
     transform: scale(1.05);
 }
 
-/* Botão de Sair */
+/* 🛑 Botão de Excluir */
+.delete-button {
+    background: #d9534f;
+}
+
+.delete-button:hover {
+    background: #c9302c;
+}
+
+/* 📝 Botão de Editar */
+.edit-button {
+    background: #f0ad4e;
+}
+
+.edit-button:hover {
+    background: #ec971f;
+}
+
+/* 🚪 Botão de Sair */
 .exit-container {
     display: flex;
     justify-content: flex-end;
@@ -162,15 +197,106 @@ button:hover {
 }
 
 .exit-button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .exit-button:hover {
-    background: #c0a77b;
+    background: #a2896d;
+    transform: scale(1.05);
+}
+
+/* 📌 **Modal de edição de clínicas** */
+.clinica-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    display: none;
+}
+
+/* Fundo escuro para modal */
+.clinica-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+/* Botões do modal */
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.modal-buttons button {
+    background: #c7b299;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.modal-buttons button:hover {
+    background: #a2896d;
+}
+
+/* 📱 Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .filter-container input {
+        width: 100%;
+    }
+
+    .filter-container button {
+        width: 100%;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    /* Modal responsivo */
+    .clinica-modal {
+        width: 95%;
+    }
 }

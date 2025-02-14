@@ -3,55 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Pacientes</title>
-    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-paciente.css">
+    <title>Consulta de Clínicas</title>
+    <link rel="stylesheet" href="../../css/Sub-pages/Consultar-clinica.css">
 </head>
 <body>
-    <header>Consulta de Pacientes</header>
+    <header>Consulta de Clínicas</header>
 
     <nav>
         <a href="../TelaInicial.html">Início</a>
-        <a href="../Sub-pages/Consultar-profissional.html">Cadastro de Profissionais</a>
+        <a href="../Sub-pages/Consultar-profissional.html">Profissionais</a>
+        <a href="../Sub-pages/Consultar-paciente.html">Pacientes</a>
         <a href="../Sub-pages/Consultar-consultas.html">Consultas</a>
-        <a href="../Sub-pages/Consultar-clinicas.html">Clínicas</a>
         <a href="../../index.html">Sair</a>
     </nav>
 
     <div class="container">
-        <!-- Botão de Adicionar Paciente -->
         <div class="actions">
-            <a href="../Cadastro-paciente.html" class="add-button">Adicionar Paciente</a>
+            <a href="../Cadastro-clinica.html" class="add-button">Adicionar Clínica</a>
         </div>
 
-        <!-- Campo de Busca -->
         <div class="filter-container">
             <input type="text" id="filter-input" placeholder="Pesquisar por nome...">
             <button id="filter-button">Pesquisar</button>
         </div>
 
-        <!-- Tabela de Pacientes -->
         <table>
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Telefone</th>
                     <th>Endereço</th>
-                    <th>Clínicas</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody id="table-body">
-                <!-- Dados dos pacientes serão inseridos dinamicamente via JavaScript -->
+                <!-- Os dados serão adicionados dinamicamente -->
             </tbody>
         </table>
 
-        <!-- Botão de Sair -->
         <div class="exit-container">
             <a href="../TelaInicial.html" class="exit-button">Sair</a>
         </div>
     </div>
 
-    <script src="../../js/Sub-pages/Consultar-pacientes.js"></script>
+    <script src="../../js/Sub-pages/Consultar-clinicas.js"></script>
 </body>
 </html>

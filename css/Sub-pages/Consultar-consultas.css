@@ -1,35 +1,43 @@
-/* Reset */
+/* 🎨 Reset de estilos */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-/* Global Styles */
+/* 🌍 Estilização global */
 body {
-    font-family: Arial, sans-serif;
-    background: #f9f4ef;
+    background: #f3ebe3;
     color: #333;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
+/* 🏆 Cabeçalho */
 header {
-    background: #d8c3a5;
+    background: #c7b299;
     padding: 20px;
     text-align: center;
     color: white;
     font-size: 24px;
     font-weight: bold;
+    width: 100%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* 🔝 Navbar */
 nav {
     background: #ffffff;
     padding: 15px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -43,12 +51,14 @@ nav a {
 }
 
 nav a:hover {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
 }
 
+/* 📦 Container principal */
 .container {
     max-width: 1200px;
+    width: 90%;
     margin: 40px auto;
     padding: 20px;
     background: #ffffff;
@@ -56,7 +66,7 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Botão de Adicionar */
+/* 🎯 Botão de Adicionar */
 .actions {
     display: flex;
     justify-content: flex-end;
@@ -64,34 +74,72 @@ nav a:hover {
 }
 
 .add-button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .add-button:hover {
-    background: #c0a77b;
+    background: #a2896d;
+    transform: scale(1.05);
 }
 
-/* Tabela */
+/* 🔎 Filtro de pesquisa */
+.filter-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-container input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #c7b299;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.filter-container button {
+    background: #c7b299;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.filter-container button:hover {
+    background: #a2896d;
+    transform: scale(1.05);
+}
+
+/* 📋 Tabela */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 table th, table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 14px 16px;
+    border-bottom: 1px solid #ddd;
     text-align: left;
 }
 
 table th {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -103,28 +151,47 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #f1e9d8;
+    transition: background 0.3s ease;
 }
 
-/* Botões */
+/* 🎛️ Botões de ação */
 button {
-    padding: 8px 16px;
+    padding: 10px 16px;
     margin: 5px;
     font-size: 14px;
     font-weight: bold;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background: #c0a77b;
+    background: #a2896d;
     transform: scale(1.05);
 }
 
-/* Botão de Sair */
+/* 🛑 Botão de Excluir */
+.delete-button {
+    background: #d9534f;
+}
+
+.delete-button:hover {
+    background: #c9302c;
+}
+
+/* 📝 Botão de Editar */
+.edit-button {
+    background: #f0ad4e;
+}
+
+.edit-button:hover {
+    background: #ec971f;
+}
+
+/* 🚪 Botão de Sair */
 .exit-container {
     display: flex;
     justify-content: flex-end;
@@ -132,44 +199,90 @@ button:hover {
 }
 
 .exit-button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border-radius: 5px;
     font-weight: bold;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .exit-button:hover {
-    background: #c0a77b;
+    background: #a2896d;
+    transform: scale(1.05);
 }
 
-/* Sistema de Filtro */
-.filter-container {
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
+/* 📌 **Responsividade para telas menores** */
+@media (max-width: 1024px) {
+    .container {
+        width: 95%;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .filter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-container input {
+        width: 100%;
+    }
+
+    .filter-container button {
+        width: 100%;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .exit-container {
+        justify-content: center;
+    }
 }
 
-.filter-container input {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+/* 📌 **Responsividade para telas menores que 600px** */
+@media (max-width: 600px) {
+    header {
+        font-size: 20px;
+    }
 
-.filter-container button {
-    background: #d8c3a5;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
+    nav a {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
 
-.filter-container button:hover {
-    background: #c0a77b;
+    .container {
+        padding: 15px;
+    }
+
+    table th, table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .filter-container {
+        gap: 5px;
+    }
+
+    .filter-container input {
+        font-size: 14px;
+    }
 }

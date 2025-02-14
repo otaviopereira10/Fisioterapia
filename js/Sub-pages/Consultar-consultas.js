@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const tableBody = document.getElementById("table-body");
+    const filterInput = document.getElementById("filter-input");
+    const filterButton = document.getElementById("filter-button");
 
     await carregarConsultas();
 
@@ -20,20 +22,17 @@ document.addEventListener("DOMContentLoaded", async function () {
         consultas.forEach((consulta) => {
             const row = document.createElement("tr");
 
+            const dataFormatada = formatarData(consulta.data);
+            const horaFormatada = formatarHora(consulta.hora);
+
             row.innerHTML = `
                 <td>${consulta.paciente ? consulta.paciente.nome : "Desconhecido"}</td>
                 <td>${consulta.profissional ? consulta.profissional.nome : "Desconhecido"}</td>
-                <td>${consulta.data}</td>
-                <td>${consulta.hora}</td>
+                <td>${consulta.clinica ? consulta.clinica.nome : "Não informada"}</td>
+                <td>${dataFormatada}</td>
+                <td>${horaFormatada}</td>
                 <td>
-                    <button class="edit-button" 
-                        data-id="${consulta.id}" 
-                        data-paciente="${consulta.paciente ? consulta.paciente.id : ''}" 
-                        data-profissional="${consulta.profissional ? consulta.profissional.id : ''}" 
-                        data-data="${consulta.data}" 
-                        data-hora="${consulta.hora}">
-                        Editar
-                    </button>
+                    <button class="edit-button" data-id="${consulta.id}">Editar</button>
                     <button class="delete-button" data-id="${consulta.id}">Excluir</button>
                 </td>
             `;
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         document.querySelectorAll(".edit-button").forEach((button) => {
             button.addEventListener("click", function () {
-                editarConsulta(this);
+                editarConsulta(this.getAttribute("data-id"));
             });
         });
 
@@ -54,34 +53,31 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
     }
 
-    async function editarConsulta(button) {
-        const consultaId = button.getAttribute("data-id");
-        const pacienteIdAtual = button.getAttribute("data-paciente");
-        const profissionalIdAtual = button.getAttribute("data-profissional");
-        const dataAtual = button.getAttribute("data-data");
-        const horaAtual = button.getAttribute("data-hora");
+    function formatarData(dataISO) {
+        const partes = dataISO.split("-");
+        return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
 
-        const novoPacienteId = prompt("Novo ID do Paciente:", pacienteIdAtual);
-        const novoProfissionalId = prompt("Novo ID do Profissional:", profissionalIdAtual);
-        const novaData = prompt("Nova Data (AAAA-MM-DD):", dataAtual);
-        const novaHora = prompt("Nova Hora (HH:MM):", horaAtual);
+    function formatarHora(horaISO) {
+        return horaISO.substring(0, 5);
+    }
 
-        if (!novoPacienteId || !novoProfissionalId || !novaData || !novaHora) {
-            alert("Todos os campos devem ser preenchidos!");
+    async function editarConsulta(id) {
+        const novaData = prompt("Nova Data (DD/MM/AAAA):");
+        const novaHora = prompt("Nova Hora (HH:MM):");
+
+        if (!novaData || !novaHora) {
+            alert("Todos os campos são obrigatórios!");
             return;
         }
 
-        const consultaAtualizada = {
-            data: novaData,
-            hora: novaHora
-        };
+        const novaDataISO = novaData.split("/").reverse().join("-");
 
         try {
-            const url = `https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${consultaId}/${novoPacienteId}/${novoProfissionalId}`;
-            const response = await fetch(url, {
+            const response = await fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(consultaAtualizada),
+                body: JSON.stringify({ data: novaDataISO, hora: novaHora }),
             });
 
             if (!response.ok) throw new Error("Erro ao atualizar consulta");
@@ -90,19 +86,13 @@ document.addEventListener("DOMContentLoaded", async function () {
             carregarConsultas();
         } catch (error) {
             console.error("Erro ao atualizar consulta:", error);
-            alert("Erro ao atualizar consulta.");
         }
     }
 
     async function deletarConsulta(id) {
         if (confirm("Tem certeza que deseja excluir esta consulta?")) {
             try {
-                const response = await fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${id}`, {
-                    method: "DELETE"
-                });
-
-                if (!response.ok) throw new Error("Erro ao excluir consulta");
-
+                await fetch(`https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${id}`, { method: "DELETE" });
                 alert("Consulta excluída com sucesso!");
                 carregarConsultas();
             } catch (error) {

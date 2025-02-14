@@ -3,32 +3,39 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 /* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background: #f9f4ef;
+    background: #f3ebe3;
     color: #333;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
+/* Header */
 header {
-    background: #d8c3a5;
+    background: #c7b299;
     padding: 20px;
     text-align: center;
     color: white;
     font-size: 24px;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
 }
 
+/* Navbar */
 nav {
     background: #ffffff;
     padding: 15px;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,13 +50,14 @@ nav a {
 }
 
 nav a:hover {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
 }
 
 /* Container */
 .container {
     max-width: 600px;
+    width: 100%;
     margin: 40px auto;
     padding: 20px;
     background: #ffffff;
@@ -57,30 +65,145 @@ nav a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Labels corrigidos */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    color: #5a5a5a;
+    font-size: 16px;
 }
 
+/* Estilo dos inputs */
 .form-group input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 2px solid #c7b299;
     border-radius: 5px;
+    font-size: 16px;
 }
 
+.form-group input:focus {
+    border-color: #a2896d;
+    outline: none;
+}
+
+/* 🌟 Dropdown Estilizado */
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #c7b299;
+    border-radius: 5px;
+    background-color: #a2896d;
+    text-align: left;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.dropdown button:hover {
+    background: #f0e5d8;
+    border-color: #a2896d;
+}
+
+.dropdown button::after {
+    content: "▼";
+    font-size: 14px;
+    color: #8d7969;
+}
+
+/* Estilização do menu dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background: #866e5c; /* 🔥 Agora o fundo é mais escuro */
+    border: 2px solid #c7b299;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+/* Mostrar dropdown */
+.dropdown.active .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Checkbox estilizado */
+.dropdown-content label {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+
+/* 🆕 Melhorando a visibilidade ao selecionar */
+.dropdown-content label:hover {
+    background: #5c4837;
+}
+
+.dropdown-content input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #c7b299;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Agora as selecionadas ficam em fundo escuro */
+.dropdown-content input[type="checkbox"]:checked + label {
+    background: #c7b299;
+    color: white;
+    font-weight: bold;
+}
+
+/* Checkboxes customizados */
+.dropdown-content input[type="checkbox"]:checked {
+    background: #c7b299;
+    border: 2px solid #8d7969;
+}
+
+/* Animação do dropdown */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Botões */
 button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -90,20 +213,39 @@ button {
 }
 
 button:hover {
-    background: #c0a77b;
+    background: #a2896d;
 }
 
-/* Botão de Sair */
+/* Estilização do botão de Voltar */
 .exit-button {
-    background: #d8c3a5;
+    background: #c7b299;
     color: white;
     text-decoration: none;
-    padding: 9px 15px;
+    padding: 10px 15px;
     border-radius: 5px;
     font-weight: bold;
     transition: background 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .exit-button:hover {
-    background: #c0a77b;
+    background: #8d7969;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .dropdown-content {
+        max-height: 200px;
+    }
 }

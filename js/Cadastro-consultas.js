@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     const form = document.getElementById("add-form");
     const pacienteSelect = document.getElementById("paciente");
     const profissionalSelect = document.getElementById("profissional");
+    const clinicaSelect = document.getElementById("clinica");
 
     await carregarPacientes();
     await carregarProfissionais();
+    await carregarClinicas();
 
     async function carregarPacientes() {
         try {
@@ -40,23 +42,41 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     }
 
+    async function carregarClinicas() {
+        try {
+            const response = await fetch("https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/clinicas");
+            if (!response.ok) throw new Error("Erro ao buscar clínicas");
+
+            const clinicas = await response.json();
+            clinicas.forEach(clinica => {
+                const option = document.createElement("option");
+                option.value = clinica.id;
+                option.textContent = clinica.nome;
+                clinicaSelect.appendChild(option);
+            });
+        } catch (error) {
+            console.error("Erro ao carregar clínicas:", error);
+        }
+    }
+
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
         const pacienteId = pacienteSelect.value;
         const profissionalId = profissionalSelect.value;
+        const clinicaId = clinicaSelect.value;
         const data = document.getElementById("data").value;
         const hora = document.getElementById("hora").value;
 
-        if (!pacienteId || !profissionalId) {
-            alert("Selecione um paciente e um profissional!");
+        if (!pacienteId || !profissionalId || !clinicaId) {
+            alert("Selecione um paciente, um profissional e uma clínica!");
             return;
         }
 
         const novaConsulta = { data, hora };
 
         try {
-            const url = `https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${pacienteId}/${profissionalId}`;
+            const url = `https://spectacular-jerrilee-otavio-a8263f63.koyeb.app/api/consultas/${pacienteId}/${profissionalId}/${clinicaId}`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
